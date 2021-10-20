@@ -1,10 +1,10 @@
-import TasksCRUD from "./pages/TasksCRUD";
+import CrudApp from "./pages/CrudApp";
 
 function App() {
   return (
-    <>
-      <TasksCRUD/>
-    </>
+    <div>
+      <CrudApp/>
+    </div>
   );
 }
 
