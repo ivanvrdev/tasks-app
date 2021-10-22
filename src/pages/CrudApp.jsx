@@ -2,7 +2,10 @@ import React, {useState} from 'react'
 import CrudForm from '../components/CrudForm';
 import CrudTable from '../components/CrudTable';
 
-const tasksData = [
+/**
+ * Lista de tareas de prueba
+ */
+const testData = [
     {
         id: 1,
         desc: "Task 1",
@@ -31,14 +34,48 @@ const tasksData = [
 ];
 
 const CrudApp = () => {
+    /**
+     * Estado que almacena la lista de tareas.
+     */
+    const [tasks, setTasks] = useState(testData);
+    /**
+     * Pendiente
+     */
+    const [taskToUpdate, setTaskToUpdate] = useState(null)
 
-    const [tasks, setTaks] = useState(tasksData);
+    const createTask = (newTaskData) =>{
+        /**
+         * Generamos un id con la fecha del momento de creación
+         */
+        newTaskData.id = Date.now();
+        /**
+         * Agregamos la tarea nueva a la lista de tareas
+         */
+        setTasks([...tasks, newTaskData]);
+    }
+
+    const updateTask = (data) =>{
+
+    }
+
+    const deleteTask = (id) =>{
+
+    }
 
     return (
         <div>
             <h1>CRUD App</h1>
-            <CrudForm/>
-            <CrudTable tasks = {tasks}/>
+            <CrudForm 
+                createTask = {createTask}
+                updateTask = {updateTask} 
+                taskToUpdate = {taskToUpdate} 
+                setTaskToUpdate = {setTaskToUpdate}
+            />
+            <CrudTable 
+                tasks = {tasks}
+                deleteTask = {deleteTask}
+                setTaskToUpdate = {setTaskToUpdate}
+            />
         </div>
     )
 }

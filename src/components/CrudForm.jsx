@@ -6,11 +6,53 @@ const initialForm = {
     id: null
 }
 
-const CrudForm = () => {
+const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
+    /**
+     * Almacena la información de los campos del formulario.
+     */
     const [form, setForm] = useState(initialForm)
-    const handleChange = (e)=>{}
-    const handleSubmit = (e)=>{}
-    const handleReset = (e)=>{}
+    /**
+     * Agrega la información que el usuario ingresa por medio del formulario al estado anterior
+     * @param {*} e el objeto del input
+     */
+    const handleChange = (e)=>{
+        setForm({
+            ...form,
+            /**
+             * Sobreescribe la propiedad del formulario con su nombre, agregandole el valor ingresado
+             */
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e)=>{
+        /**
+         * Impide que la página se recargue
+         */
+        e.preventDefault();
+
+        if (!form.desc || !form.state) {
+            alert('Incompleted data')
+            return;
+        }
+
+        if(form.id == null){
+            createTask(form);
+        }else{
+            updateTask(form);
+        }
+
+        handleReset();
+    }
+
+    /**
+     * Limpia los campos del formulario y el estado de este
+     * @param {*} e pendiente
+     */
+    const handleReset = (e)=>{
+        setForm(initialForm);
+        setTaskToUpdate(null);
+    }
 
     return (
         <div>
@@ -21,12 +63,14 @@ const CrudForm = () => {
                     name="desc" 
                     placeholder="description"
                     value={form.desc}
+                    onChange={handleChange}
                 />
                 <input 
                     type="text" 
                     name="state" 
                     placeholder="state" 
                     value={form.state}
+                    onChange={handleChange}
                 />
                 <input 
                     type="submit" 
