@@ -54,12 +54,23 @@ const CrudApp = () => {
         setTasks([...tasks, newTaskData]);
     }
 
-    const updateTask = (data) =>{
-
+    const updateTask = (taskData) =>{
+        /**
+         * Se compara el id de las tareas y en donde cooinciden la tarea editada reemplaza a la tarea almacenda en el arreglo.
+         */
+        let updatedTasks = tasks.map(task => task.id === taskData.id ? taskData : task);
+        setTasks(updatedTasks);
     }
 
     const deleteTask = (id) =>{
+        let userIsSure = window.confirm(`Are you sure to delete the task with id: ${id}?`);
 
+        if(!userIsSure){
+            return;
+        }
+        /**Guarda las tareas en un array menos la tarea a eliminar y actuliza el estado */
+        let updatedTasks = tasks.filter(task => task.id !== id);
+        setTasks(updatedTasks);
     }
 
     return (

@@ -1,15 +1,22 @@
 import React from 'react'
 
-const CrudTableRow = ({task}) => {
+const CrudTableRow = ({task, setTaskToUpdate, deleteTask}) => {
+
+    let {desc, state, id} = task;
+
     return (
         <tr>
-            <td>{task.desc}</td>
-            <td>{task.state}</td>
+            <td>{desc}</td>
+            <td>{state}</td>
             <td>
-                <button>
+                <button
+                    onClick = {()=>setTaskToUpdate(task)}
+                >
                     Update
                 </button>
-                <button>
+                <button
+                    onClick = {()=>deleteTask(id)}
+                >
                     Delete
                 </button>
             </td>

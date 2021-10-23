@@ -11,6 +11,15 @@ const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
      * Almacena la información de los campos del formulario.
      */
     const [form, setForm] = useState(initialForm)
+
+    useEffect(()=>{
+        if(taskToUpdate){
+            setForm(taskToUpdate)
+        }else{
+            setForm(initialForm)
+        }
+    }, [taskToUpdate])
+
     /**
      * Agrega la información que el usuario ingresa por medio del formulario al estado anterior
      * @param {*} e el objeto del input
@@ -30,7 +39,9 @@ const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
          * Impide que la página se recargue
          */
         e.preventDefault();
-
+        /**
+         * Valida que los datos no esten incompletos
+         */
         if (!form.desc || !form.state) {
             alert('Incompleted data')
             return;
@@ -56,7 +67,7 @@ const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
 
     return (
         <div>
-            <h3>New task</h3>
+            <h3>{taskToUpdate ? "Update Task" : "New Task"}</h3>
             <form onSubmit = {handleSubmit}>
                 <input 
                     type="text" 
