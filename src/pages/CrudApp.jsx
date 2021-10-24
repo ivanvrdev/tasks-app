@@ -75,7 +75,7 @@ const CrudApp = () => {
 
     return (
         <div>
-            <h1>CRUD App</h1>
+            <h2>CRUD App</h2>
             <CrudForm 
                 createTask = {createTask}
                 updateTask = {updateTask} 

@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from 'react'
 
 const initialForm = {
-    desc: "",
-    state: "",
-    id: null
+    username: "",
+    role: "",
+    uid: null
 }
 
-const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
+const CrudForm = ({createUser, updateUser, userToUpdate, setUserToUpdate}) => {
     /**
      * Almacena la información de los campos del formulario.
      */
     const [form, setForm] = useState(initialForm)
 
     useEffect(()=>{
-        if(taskToUpdate){
-            setForm(taskToUpdate)
+        if(userToUpdate){
+            setForm(userToUpdate)
         }else{
             setForm(initialForm)
         }
-    }, [taskToUpdate])
+    }, [userToUpdate])
 
     /**
      * Agrega la información que el usuario ingresa por medio del formulario al estado anterior
@@ -42,15 +42,15 @@ const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
         /**
          * Valida que los datos no esten incompletos
          */
-        if (!form.desc || !form.state) {
+        if (!form.role || !form.username) {
             alert('Incompleted data')
             return;
         }
 
-        if(form.id == null){
-            createTask(form);
+        if(form.uid == null){
+            createUser(form);
         }else{
-            updateTask(form);
+            updateUser(form);
         }
 
         handleReset();
@@ -62,25 +62,25 @@ const CrudForm = ({createTask, updateTask, taskToUpdate, setTaskToUpdate}) => {
      */
     const handleReset = (e)=>{
         setForm(initialForm);
-        setTaskToUpdate(null);
+        setUserToUpdate(null);
     }
 
     return (
         <div>
-            <h3>{taskToUpdate ? "Update Task" : "New Task"}</h3>
+            <h3>{userToUpdate ? "Update user" : "New user"}</h3>
             <form onSubmit = {handleSubmit}>
                 <input 
                     type="text" 
-                    name="desc" 
-                    placeholder="description"
-                    value={form.desc}
+                    name="username" 
+                    placeholder="username"
+                    value={form.username}
                     onChange={handleChange}
                 />
                 <input 
                     type="text" 
-                    name="state" 
-                    placeholder="state" 
-                    value={form.state}
+                    name="role" 
+                    placeholder="role" 
+                    value={form.role}
                     onChange={handleChange}
                 />
                 <input 

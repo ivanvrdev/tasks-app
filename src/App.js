@@ -1,9 +1,11 @@
-import CrudApp from "./pages/CrudApp";
+import CrudApi from "./pages/CrudApi";
+// import CrudApp from "./pages/CrudApp";
 
 function App() {
   return (
     <div>
-      <CrudApp/>
+      <CrudApi/>
+      {/* <CrudApp/> */}
     </div>
   );
 }

@@ -1,29 +1,29 @@
 import React from 'react'
 import CrudTableRow from './CrudTableRow'
 
-const CrudTable = ({tasks, setTaskToUpdate, deleteTask}) => {
+const CrudTable = ({users, setUserToUpdate, deleteUser}) => {
     
     return (
         <div>
-            <h2>Tasks table</h2>
+            <h2>Users table</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Description</th>
-                        <th>State</th>
+                        <th>Username</th>
+                        <th>Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.length === 0 ? (
+                    {users.length === 0 ? (
                         <tr><td colSpan = "3">No data</td></tr>
                     ) : (
-                        tasks.map(task => 
+                        users.map(user => 
                             <CrudTableRow 
-                                key = {task.id}
-                                task = {task}
-                                setTaskToUpdate = {setTaskToUpdate}
-                                deleteTask = {deleteTask}
+                                key = {user.uid}
+                                user = {user}
+                                setUserToUpdate = {setUserToUpdate}
+                                deleteUser = {deleteUser}
                             /> 
                         )
                     )}

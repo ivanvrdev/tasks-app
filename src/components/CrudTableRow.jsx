@@ -1,21 +1,21 @@
 import React from 'react'
 
-const CrudTableRow = ({task, setTaskToUpdate, deleteTask}) => {
+const CrudTableRow = ({user, setUserToUpdate, deleteUser}) => {
 
-    let {desc, state, id} = task;
+    let {username, role, uid} = user;
 
     return (
         <tr>
-            <td>{desc}</td>
-            <td>{state}</td>
+            <td>{username}</td>
+            <td>{role}</td>
             <td>
                 <button
-                    onClick = {()=>setTaskToUpdate(task)}
+                    onClick = {()=>setUserToUpdate(user)}
                 >
                     Update
                 </button>
                 <button
-                    onClick = {()=>deleteTask(id)}
+                    onClick = {()=>deleteUser(uid)}
                 >
                     Delete
                 </button>
